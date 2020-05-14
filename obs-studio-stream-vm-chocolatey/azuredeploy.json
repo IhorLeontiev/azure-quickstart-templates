@@ -113,7 +113,11 @@
                             "destinationAddressPrefix": "*",
                             "access": "Allow",
                             "priority": 300,
-                            "direction": "Inbound"
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
                         }
                     }
                 ]
@@ -128,6 +132,7 @@
             ],
             "properties": {
                 "addressPrefix": "10.0.4.0/24",
+                "delegations": [],
                 "privateEndpointNetworkPolicies": "Enabled",
                 "privateLinkServiceNetworkPolicies": "Enabled"
             }
@@ -148,11 +153,13 @@
                         "name": "default",
                         "properties": {
                             "addressPrefix": "10.0.4.0/24",
+                            "delegations": [],
                             "privateEndpointNetworkPolicies": "Enabled",
                             "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     }
                 ],
+                "virtualNetworkPeerings": [],
                 "enableDdosProtection": false,
                 "enableVmProtection": false
             }
@@ -171,7 +178,8 @@
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
                     "domainNameLabel": "[parameters('dnsprefix')]"
-                }
+                },
+                "ipTags": []
             }
         },
         {
@@ -202,6 +210,9 @@
                         }
                     }
                 ],
+                "dnsSettings": {
+                    "dnsServers": []
+                },
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
@@ -233,7 +244,8 @@
                         "name": "[concat(parameters('vm_name'), '_OsDisk')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite"
-                    }
+                    },
+                    "dataDisks": []
                 },
                 "osProfile": {
                     "computerName": "[parameters('vm_name')]",
@@ -265,7 +277,7 @@
                 "type": "NvidiaGpuDriverWindows",
                 "typeHandlerVersion": "1.2",
                 "autoUpgradeMinorVersion": true,
-                "settings": null
+                "settings": {}
             }
         },
         {
@@ -291,7 +303,7 @@
                     ],
                     "commandToExecute": "[concat('powershell -ExecutionPolicy bypass -File ',parameters('setupChocolateyScriptFileName'),' -chocoPackages ',parameters('chocoPackages'),' -linktopackages ',parameters('linktopackages'))]"
                 },
-                "protectedSettings": null
+                "protectedSettings": {}
             }
         }
     ],
