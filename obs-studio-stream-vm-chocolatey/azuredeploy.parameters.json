@@ -2,8 +2,11 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location":{
+            "value": "West Europe"
+        },
         "vm_name": {
-            "value": "GEN-UNIQUE["
+            "value": "GEN-UNIQUE-8"
         },
         "vmAdminUserName": {
             "value": "GEN-UNIQUE"
@@ -33,10 +36,13 @@
             "value": "ChocoInstall.ps1"
         },
         "setupChocolatelyScriptLocation": {
-            "value": "https://raw.githubusercontent.com/IhorLeontiev/azure-quickstart-templates/master/obs-studio-stream-vm-chocolatey/scripts/"
+            "value": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/obs-studio-stream-vm-chocolatey/scripts/"
         },
         "chocoPackages": {
             "value": "obs-studio;skype"
+        },
+        "linktopackages":{
+            "value": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/obs-studio-stream-vm-chocolatey/scripts/packages/obs-ndi.zip"
         }
     }
 }
